@@ -1,4 +1,4 @@
-package com.luckgg.catdex.data.remote.dto
+package com.luckgg.catdex.domain.model
 
 data class CatImage(
     val height: Int,

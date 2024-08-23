@@ -2,11 +2,15 @@ package com.luckgg.catdex.di
 
 import com.luckgg.catdex.common.Constants.API_KEY_DATA
 import com.luckgg.catdex.common.Constants.API_KEY_TITLE
+import com.luckgg.catdex.common.Constants.BASE_URL
 import com.luckgg.catdex.common.Constants.CONTENT_TYPE_DATA
 import com.luckgg.catdex.common.Constants.CONTENT_TYPE_TITLE
 import com.luckgg.catdex.data.CatAPI
+import com.luckgg.catdex.data.remote.RemoteSource
+import com.luckgg.catdex.data.remote.source.RemoteSourceImpl
 import com.luckgg.catdex.data.repository.CatRepositoryImpl
 import com.luckgg.catdex.domain.repository.CatRepository
+import com.luckgg.catdex.domain.usecase.CatListUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +23,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-    val httpClient =
+    private val httpClient: OkHttpClient =
         OkHttpClient
             .Builder()
             .addNetworkInterceptor { chain ->
@@ -38,7 +42,7 @@ object AppModule {
     fun provideCatAPI(): CatAPI =
         Retrofit
             .Builder()
-            .baseUrl("https://api.thecatapi.com/v1")
+            .baseUrl(BASE_URL)
             .client(httpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -46,5 +50,13 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCatRepository(): CatRepository = CatRepositoryImpl()
+    fun provideRemoteSource(api: CatAPI): RemoteSource = RemoteSourceImpl(apiService = api)
+
+    @Provides
+    @Singleton
+    fun provideCatRepository(remoteSource: RemoteSource): CatRepository = CatRepositoryImpl(remoteSource = remoteSource)
+
+    @Provides
+    @Singleton
+    fun provideCatListUseCase(catRepository: CatRepository): CatListUseCase = CatListUseCase(catRepository = catRepository)
 }
