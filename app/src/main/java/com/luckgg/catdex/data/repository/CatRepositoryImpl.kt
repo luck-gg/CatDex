@@ -33,10 +33,16 @@ class CatRepositoryImpl
 
         override suspend fun getCatImage(id: String): Resource<CatImage> =
             try {
-                Resource.Success(mapper.mapToDomainCatImage(remoteSource.getCatImage(id)))
+                Resource.Success(
+                    mapper.mapToDomainCatImage(
+                        remoteSource.getCatImage(id),
+                    ),
+                )
             } catch (e: HttpException) {
                 Resource.Error(e.localizedMessage ?: ERROR_UNEXPECTED)
             } catch (e: IOException) {
+                Resource.Error(e.localizedMessage ?: ERROR_UNEXPECTED)
+            } catch (e: Exception) {
                 Resource.Error(e.localizedMessage ?: ERROR_UNEXPECTED)
             }
     }
