@@ -1,8 +1,8 @@
 package com.luckgg.catdex.di
 
+import com.luckgg.catdex.BuildConfig
 import com.luckgg.catdex.domain.repository.CatRepository
 import com.luckgg.catdex.domain.usecase.CatListUseCase
-import com.luckgg.common.Constants.API_KEY_DATA
 import com.luckgg.common.Constants.API_KEY_TITLE
 import com.luckgg.common.Constants.BASE_URL
 import com.luckgg.common.Constants.CONTENT_TYPE_DATA
@@ -23,6 +23,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+    private const val API_KEY = BuildConfig.API_KEY
     private val httpClient: OkHttpClient =
         OkHttpClient
             .Builder()
@@ -31,7 +32,7 @@ object AppModule {
                     chain
                         .request()
                         .newBuilder()
-                        .addHeader(API_KEY_TITLE, API_KEY_DATA)
+                        .addHeader(API_KEY_TITLE, API_KEY)
                         .addHeader(CONTENT_TYPE_TITLE, CONTENT_TYPE_DATA)
                         .build()
                 chain.proceed(request)
