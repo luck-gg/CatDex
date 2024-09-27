@@ -1,12 +1,12 @@
 package com.luckgg.catdex.di
 
 import com.luckgg.catdex.BuildConfig
-import com.luckgg.catdex.domain.repository.CatRepository
-import com.luckgg.catdex.domain.usecase.CatListUseCase
 import com.luckgg.common.Constants.API_KEY_TITLE
 import com.luckgg.common.Constants.BASE_URL
 import com.luckgg.common.Constants.CONTENT_TYPE_DATA
 import com.luckgg.common.Constants.CONTENT_TYPE_TITLE
+import com.luckgg.domain.repository.CatRepository
+import com.luckgg.domain.usecase.CatListUseCase
 import com.luckgg.network.CatAPI
 import com.luckgg.network.remote.RemoteSource
 import com.luckgg.network.remote.source.RemoteSourceImpl

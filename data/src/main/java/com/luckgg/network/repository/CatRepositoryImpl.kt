@@ -1,10 +1,10 @@
 package com.luckgg.network.repository
 
-import com.luckgg.catdex.domain.repository.CatRepository
 import com.luckgg.common.Constants.ERROR_UNEXPECTED
 import com.luckgg.common.Resource
 import com.luckgg.domain.model.Cat
 import com.luckgg.domain.model.CatImage
+import com.luckgg.domain.repository.CatRepository
 import com.luckgg.network.mapper.CatMapper
 import com.luckgg.network.remote.RemoteSource
 import retrofit2.HttpException
@@ -18,9 +18,17 @@ class CatRepositoryImpl
     ) : CatRepository {
         private val mapper = CatMapper()
 
-        override suspend fun getCats(): Resource<List<Cat>> =
+        override suspend fun fetchCats(): Resource<List<Cat>> =
             try {
-                Resource.Success(mapper.mapToDomainCats(remoteSource.getCats()))
+                Resource.Success(
+                    mapper
+                        .mapToDomainCats(
+                            remoteSource.getCats(),
+                        ).map { cat ->
+                            val imageUrl = fetchCatImage(cat.imageId).data?.url.orEmpty()
+                            cat.copy(imageUrl = imageUrl)
+                        },
+                )
             } catch (e: HttpException) {
                 Resource.Error(e.localizedMessage ?: ERROR_UNEXPECTED)
             } catch (e: IOException) {
@@ -31,7 +39,7 @@ class CatRepositoryImpl
             TODO("Not yet implemented")
         }
 
-        override suspend fun getCatImage(id: String): Resource<CatImage> =
+        override suspend fun fetchCatImage(id: String): Resource<CatImage> =
             try {
                 Resource.Success(
                     mapper.mapToDomainCatImage(
