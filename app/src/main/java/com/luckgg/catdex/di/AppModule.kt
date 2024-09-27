@@ -1,16 +1,16 @@
 package com.luckgg.catdex.di
 
-import com.luckgg.catdex.common.Constants.API_KEY_DATA
-import com.luckgg.catdex.common.Constants.API_KEY_TITLE
-import com.luckgg.catdex.common.Constants.BASE_URL
-import com.luckgg.catdex.common.Constants.CONTENT_TYPE_DATA
-import com.luckgg.catdex.common.Constants.CONTENT_TYPE_TITLE
-import com.luckgg.catdex.data.CatAPI
-import com.luckgg.catdex.data.remote.RemoteSource
-import com.luckgg.catdex.data.remote.source.RemoteSourceImpl
-import com.luckgg.catdex.data.repository.CatRepositoryImpl
 import com.luckgg.catdex.domain.repository.CatRepository
 import com.luckgg.catdex.domain.usecase.CatListUseCase
+import com.luckgg.common.Constants.API_KEY_DATA
+import com.luckgg.common.Constants.API_KEY_TITLE
+import com.luckgg.common.Constants.BASE_URL
+import com.luckgg.common.Constants.CONTENT_TYPE_DATA
+import com.luckgg.common.Constants.CONTENT_TYPE_TITLE
+import com.luckgg.network.CatAPI
+import com.luckgg.network.remote.RemoteSource
+import com.luckgg.network.remote.source.RemoteSourceImpl
+import com.luckgg.network.repository.CatRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

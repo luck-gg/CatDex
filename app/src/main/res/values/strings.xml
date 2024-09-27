@@ -1,4 +1,3 @@
 <resources>
     <string name="app_name">CatDex</string>
-    <string name="cat_list_error_title">Ocurrió un error: %1$s</string>
 </resources>

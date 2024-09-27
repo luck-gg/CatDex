@@ -7,8 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.luckgg.catdex.presentation.screen.CatListScreen
-import com.luckgg.catdex.presentation.ui.theme.CatDexTheme
+import com.luckgg.presentation.Screen
+import com.luckgg.presentation.screen.CatListScreen
+import com.luckgg.presentation.ui.theme.CatDexTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

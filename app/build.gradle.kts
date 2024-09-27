@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    alias(libs.plugins.android.application)
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.luckgg.catdex"
-        minSdk = 27
+        minSdk = 30
         targetSdk = 34
         versionCode = 1
         versionName = "1.0.0"
@@ -64,6 +64,11 @@ android {
 }
 
 dependencies {
+    // App dependencies
+    implementation(project(":common"))
+    implementation(project(":data"))
+    implementation(project(":domain"))
+    implementation(project(":presentation"))
     // Architecture Library
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.fragment.ktx)
