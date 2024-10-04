@@ -51,11 +51,16 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.common.android)
     ksp(libs.hilt.android.compiler)
     ksp(libs.androidx.hilt.compiler)
 
     // Coil load Image
     implementation(libs.coil.compose)
+
+    // Paging3
+    implementation(libs.androidx.paging.compose)
 
     // Compose
     implementation(libs.androidx.compose.foundation)

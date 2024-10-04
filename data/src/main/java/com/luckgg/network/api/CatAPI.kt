@@ -1,4 +1,4 @@
-package com.luckgg.network
+package com.luckgg.network.api
 
 import com.luckgg.network.remote.dto.CatDTO
 import com.luckgg.network.remote.dto.CatImageDTO
@@ -8,7 +8,10 @@ import retrofit2.http.Query
 
 interface CatAPI {
     @GET("/v1/breeds")
-    suspend fun getCats(): List<CatDTO>
+    suspend fun getCats(
+        @Query("limit") limit: Int,
+        @Query("page") page: Int,
+    ): List<CatDTO>
 
     @GET("/v1/breeds/search")
     suspend fun searchCats(

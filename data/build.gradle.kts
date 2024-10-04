@@ -44,6 +44,10 @@ dependencies {
     ksp(libs.hilt.android.compiler)
     ksp(libs.androidx.hilt.compiler)
 
+    // Paging3
+    implementation(libs.androidx.paging.common)
+    implementation(libs.androidx.paging.runtime)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

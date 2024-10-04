@@ -26,7 +26,7 @@ android {
         }
 
         buildFeatures.buildConfig = true
-        // load the values from .properties file
+        // load values from .properties file
         val keystoreFile = project.rootProject.file("apikey.properties")
         val properties = Properties()
         properties.load(keystoreFile.inputStream())
@@ -97,15 +97,14 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.logging.interceptor)
     ksp(libs.androidx.room.compiler)
     // Retrofit request
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
-    // Coil load Image
-    implementation(libs.coil.compose)
+
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
-    // Room Database
 
     // Materials
     implementation(libs.material)

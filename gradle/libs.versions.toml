@@ -25,6 +25,11 @@ lifeCycleViewModelComposeVersion = "2.8.4"
 composeVersion = "1.6.8"
 composeNavigationVersion = "2.7.7"
 compose-livedataVersion = "1.6.8"
+pagingCompose = "3.3.2"
+pagingRuntime = "3.3.2"
+pagingCommon = "3.3.2"
+loggingInterceptor = "5.0.0-alpha.14"
+pagingCommonAndroid = "3.3.2"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityCompose" }
@@ -75,6 +80,11 @@ coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coi
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomVersion" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomVersion" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion"}
+androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingCompose" }
+androidx-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "pagingRuntime" }
+androidx-paging-common = { group = "androidx.paging", name = "paging-common", version.ref = "pagingCommon" }
+logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "loggingInterceptor" }
+androidx-paging-common-android = { group = "androidx.paging", name = "paging-common-android", version.ref = "pagingCommonAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

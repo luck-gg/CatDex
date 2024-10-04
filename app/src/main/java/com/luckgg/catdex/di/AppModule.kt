@@ -7,7 +7,7 @@ import com.luckgg.common.Constants.CONTENT_TYPE_DATA
 import com.luckgg.common.Constants.CONTENT_TYPE_TITLE
 import com.luckgg.domain.repository.CatRepository
 import com.luckgg.domain.usecase.CatListUseCase
-import com.luckgg.network.CatAPI
+import com.luckgg.network.api.CatAPI
 import com.luckgg.network.remote.RemoteSource
 import com.luckgg.network.remote.source.RemoteSourceImpl
 import com.luckgg.network.repository.CatRepositoryImpl
@@ -16,6 +16,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -24,6 +25,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
     private const val API_KEY = BuildConfig.API_KEY
+
+    private val httploggingInterceptor =
+        HttpLoggingInterceptor()
+            .setLevel(HttpLoggingInterceptor.Level.BODY)
+
     private val httpClient: OkHttpClient =
         OkHttpClient
             .Builder()
@@ -36,7 +42,8 @@ object AppModule {
                         .addHeader(CONTENT_TYPE_TITLE, CONTENT_TYPE_DATA)
                         .build()
                 chain.proceed(request)
-            }.build()
+            }.addInterceptor(httploggingInterceptor)
+            .build()
 
     @Provides
     @Singleton
